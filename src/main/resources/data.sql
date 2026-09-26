@@ -1,8 +1,16 @@
+-- Initialize roles and admin user
+INSERT IGNORE INTO roles (id, name) VALUES (1, 'ADMIN'), (2, 'USER');
+
+INSERT IGNORE INTO users (id, username, email, password, enabled) VALUES
+(1, 'admin', 'admin@auditvault.com', '$2a$10$GoE9ZbIHMzIdGuFAcSpQ4exxnBtLU7xOhl8sbgLp7qtjDCmHPBW7q', true);
+
+INSERT IGNORE INTO user_roles (user_id, role_id) VALUES (1, 1);
+
 -- Sample audit log records for testing the audit create API
 -- These records demonstrate various event types and scenarios
 
 -- Record 1: User login event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'LOGIN',
     'admin',
@@ -18,7 +26,7 @@ VALUES (
 );
 
 -- Record 2: Invoice creation event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'CREATE',
     'john.doe',
@@ -34,7 +42,7 @@ VALUES (
 );
 
 -- Record 3: Document update event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'UPDATE',
     'jane.smith',
@@ -50,7 +58,7 @@ VALUES (
 );
 
 -- Record 4: Payment processed event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'PAYMENT',
     'system',
@@ -66,7 +74,7 @@ VALUES (
 );
 
 -- Record 5: User logout event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'LOGOUT',
     'admin',
@@ -82,7 +90,7 @@ VALUES (
 );
 
 -- Record 6: Data export event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'EXPORT',
     'analyst',
@@ -98,7 +106,7 @@ VALUES (
 );
 
 -- Record 7: Permission change event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'PERMISSION_CHANGE',
     'admin',
@@ -114,7 +122,7 @@ VALUES (
 );
 
 -- Record 8: Record deletion event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'DELETE',
     'jane.smith',
@@ -130,7 +138,7 @@ VALUES (
 );
 
 -- Record 9: Configuration change event
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'CONFIG_CHANGE',
     'admin',
@@ -146,7 +154,7 @@ VALUES (
 );
 
 -- Record 10: Failed authentication attempt
-INSERT INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
+INSERT IGNORE INTO audit_logs (event_type, actor_id, resource_type, resource_id, payload, event_timestamp, content_hash, previous_hash, created_at, is_archived, status) 
 VALUES (
     'AUTH_FAILED',
     'unknown',
